@@ -2508,6 +2508,9 @@ KeyPair.prototype._importPublic = function _importPublic(key, enc) {
 
 // ECDH
 KeyPair.prototype.derive = function derive(pub) {
+  if(!pub.validate()) {
+    assert(pub.validate(), 'public point not validated');
+  }
   return pub.mul(this.priv).getX();
 };
 
@@ -8830,7 +8833,7 @@ utils.encode = function encode(arr, enc) {
 },{}],35:[function(require,module,exports){
 module.exports={
   "name": "elliptic",
-  "version": "6.5.3",
+  "version": "6.5.3-sp1",
   "description": "EC cryptography",
   "main": "lib/elliptic.js",
   "files": [
